@@ -1,0 +1,22 @@
+.beer-container {
+    cursor: pointer;
+}
+
+.beer-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.beer-image-container {
+    width: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.beer-image {
+    max-width: 50px;
+    max-height: 75px;
+    width: auto;
+    height: auto;
+    margin-right: 10px;
+}
