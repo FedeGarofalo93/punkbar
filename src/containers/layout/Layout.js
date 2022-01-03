@@ -13,7 +13,7 @@ const Layout = (props) => {
 		<>
 			{/*<Mask />*/}
 			<Topbar />
-			<div className='main grid'>
+			<div className='main list'>
 				<>{children}</>
 			</div>
 		</>

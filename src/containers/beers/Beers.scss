@@ -9,7 +9,6 @@
 	width: 100%; /* Full width */
 	height: 100%; /* Full height */
 	overflow: auto; /* Enable scroll if needed */
-	background-color: rgba(0, 0, 0, 0.5);
 	-webkit-tap-highlight-color: transparent;
 }
 
@@ -21,23 +20,28 @@
 	height: 30px;
 	width: 30px;
 	font-size: 20px;
-	color: black;
+	color: $cbx-color-1;
 }
 
 .modal-content {
-	background-color: white;
-	margin: auto;
-	padding: 15px;
-	width: 80%;
-	display: flex;
-	flex-direction: column;
-	max-height: 500px;
-	overflow: auto;
+	background-image: $cbx-background-gradient-card;
+    margin: 0 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    overflow: auto;
+    border-radius: 10px;
+    box-shadow: $cbx-card-shadow;
 }
 
 .modal-title-container {
 	text-align: center;
-	margin-bottom: 10px;
+	width: 100%;
+	margin: 10px auto;
+	font-size: 20px;
+	line-height: 20px;
+	color: $cbx-color-4;
 }
 
 .modal-title-container span {
@@ -48,8 +52,10 @@
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	margin-bottom: 10px;
+	margin: 10px auto;
 }
+
+
 
 .modal-image-container img {
 	width: 80px;
@@ -58,26 +64,25 @@
 }
 
 .beer-description {
-	font-size: 14px;
-	color: dimgrey;
+	font-size: 16px;
+	color: $cbx-color-1;
 	text-align: justify;
-	text-justify: auto;
+	margin: 20px;
 }
 
 .modal .toolbar {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	grid-gap: 10px;
 }
 
-button {
-    @include cbx-button;
+button.addToOrder {
+	@include cbx-button;
+
 }
 
-button.add-beer {
-	background-color: blue;
-}
-
-button.remove-beer {
-	background-color: lightblue;
+button.remove {
+	@include cbx-button;
+	background-image: linear-gradient(to bottom, #bb2020, #ae1e1e, #a11c1c, #941a1a, #871818);
 }

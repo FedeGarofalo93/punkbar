@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import './Beers.scss';
-import beerService from '../../services/beer.service';
-import Beer from '../../components/beers/Beer';
-import orderSubject from '../../utils/OrderSubject';
+import React, { useState, useEffect } from "react";
+import "./Beers.scss";
+import beerService from "../../services/beer.service";
+import Beer from "../../components/beers/Beer";
+import orderSubject from "../../utils/OrderSubject";
 
 /**
  * Class Beers
@@ -20,9 +20,9 @@ const Beers = () => {
    * Handle order update.
    * @param {Array} beers ordered beers
    */
-  const onOrderUpdate = beers => {
+  const onOrderUpdate = (beers) => {
     setOrderedBeers(beers);
-  }; 
+  };
 
   /**
    * Attach this component to the order subject as observer.
@@ -31,21 +31,20 @@ const Beers = () => {
     orderSubject.attach(onOrderUpdate);
     return function cleanup() {
       orderSubject.detach(onOrderUpdate);
-    }
+    };
   }, []);
 
   /**
    * Get beers.
    */
   useEffect(() => {
-    beerService.getBeers()
-      .then(res => {
+    beerService
+      .getBeers()
+      .then((res) => {
         // Merge response data with current order data.
         // If the beer is in the current order, use that data due it has the ordered amount
         // Use the api response data otherwise.
-        const merge = res.map(
-          beer => orderedBeers.find(b => b.id === beer.id) || beer
-        );
+        const merge = res.map((beer) => orderedBeers.find((b) => b.id === beer.id) || beer);
         setBeers(merge);
       })
       .catch(() => {
@@ -60,7 +59,7 @@ const Beers = () => {
    * Toggle visibility of product information modal.
    * @param {object} beer selected beer
    */
-  const toggleShowModal = beer => {
+  const toggleShowModal = (beer) => {
     setShowModal(!showModal);
     setSelectedBeer(beer);
   };
@@ -74,14 +73,14 @@ const Beers = () => {
     beer.amount = (beer.amount || 0) + quantity;
     let beersInOrder = [...orderedBeers];
     if (beer.amount <= 0) {
-      const index = beersInOrder.findIndex(b => b.id === beer.id);
+      const index = beersInOrder.findIndex((b) => b.id === beer.id);
       beersInOrder.splice(index, 1);
     } else {
       let beerAlreadyInOrder = false;
-      beersInOrder = beersInOrder.map(b => {
+      beersInOrder = beersInOrder.map((b) => {
         if (b.id === beer.id) {
           beerAlreadyInOrder = true;
-          return {...beer};
+          return { ...beer };
         } else return b;
       });
       if (!beerAlreadyInOrder) {
@@ -91,42 +90,40 @@ const Beers = () => {
     orderSubject.updateOrder(beersInOrder);
   };
 
-  const modal = (
-    selectedBeer ?
-      <div className="modal" onClick={() => toggleShowModal(selectedBeer)}>
-        <div className="modal-content" id="modal-content" onClick={(e) => e.stopPropagation()}>
-          <div className="fa fa-times modal-close" onClick={() => toggleShowModal(selectedBeer)} />
-          <div className="modal-title-container">
-            <span>{selectedBeer.name}</span>
-          </div>
-          <div className="modal-image-container">
-            <img src={selectedBeer.image_url} />
-          </div>
-          <p className="beer-description">{selectedBeer.description}</p>
-          <div className="toolbar">
-            <button className="button is-primary" onClick={() => addToOrder(selectedBeer, 1)}>Add ({selectedBeer.amount || 0})</button>
-            <button
-              className="button is-danger is-light"
-              disabled={!orderedBeers.find(b => b.id === selectedBeer.id)}
-              onClick={() => addToOrder(selectedBeer, -1)}
-            >
-              Remove
-            </button>
-          </div>
+  const modal = selectedBeer ? (
+    <div className='modal' onClick={ () => toggleShowModal(selectedBeer) }>
+      <div className='modal-content' id='modal-content' onClick={ (e) => e.stopPropagation() }>
+        <div className='fa fa-times modal-close' onClick={ () => toggleShowModal(selectedBeer) } />
+        <div className='modal-title-container'>
+          <span>{ selectedBeer.name }</span>
+        </div>
+        <div className='modal-image-container'>
+          <img src={ selectedBeer.image_url } />
+        </div>
+        <p className='beer-description'>{ selectedBeer.description }</p>
+        <div className='toolbar'>
+          <button className='addToOrder is-primary' onClick={ () => addToOrder(selectedBeer, 1) }>
+            Add ({ selectedBeer.amount || 0 })
+          </button>
+          <button
+            className=' remove is-secondary'
+            disabled={ !orderedBeers.find((b) => b.id === selectedBeer.id) }
+            onClick={ () => addToOrder(selectedBeer, -1) }>
+            Remove
+          </button>
         </div>
       </div>
-      :
-      null
-  );
+    </div>
+  ) : null;
 
   return (
     <>
-      {beers.length ? beers.map(b =>
-        <Beer key={b.id} beer={b} selectBeerHandler={toggleShowModal} />
-      ) : null}
-      {showModal ?  modal : null}
+      { beers.length
+        ? beers.map((b) => <Beer key={ b.id } beer={ b } selectBeerHandler={ toggleShowModal } />)
+        : null }
+      { showModal ? modal : null }
     </>
-  )
+  );
 };
 
 export default Beers;
