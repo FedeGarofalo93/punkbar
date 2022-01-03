@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import './Beers.css';
+import './Beers.scss';
 import beerService from '../../services/beer.service';
 import Beer from '../../components/beers/Beer';
 import orderSubject from '../../utils/OrderSubject';
@@ -22,7 +22,7 @@ const Beers = () => {
    */
   const onOrderUpdate = beers => {
     setOrderedBeers(beers);
-  };
+  }; 
 
   /**
    * Attach this component to the order subject as observer.
@@ -104,9 +104,9 @@ const Beers = () => {
           </div>
           <p className="beer-description">{selectedBeer.description}</p>
           <div className="toolbar">
-            <button className="add-beer" onClick={() => addToOrder(selectedBeer, 1)}>Add ({selectedBeer.amount || 0})</button>
+            <button className="button is-primary" onClick={() => addToOrder(selectedBeer, 1)}>Add ({selectedBeer.amount || 0})</button>
             <button
-              className="remove-beer"
+              className="button is-danger is-light"
               disabled={!orderedBeers.find(b => b.id === selectedBeer.id)}
               onClick={() => addToOrder(selectedBeer, -1)}
             >

@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+
+//Color palette
+$cbx-color-1:#575a6c;
+$cbx-color-2:#b4c540;
+$cbx-color-3:#e0e2d2;
+$cbx-color-4:#3686c9;
+
+$cbx-white: #f1f1f1;
+
+//Custom variables
+$cbx-background-gradient-card: linear-gradient(to bottom, #f1f1f1, #f1f1f1, #f1f1f1, #f1f1f1, #f1f1f1, #ededed, #e9e9e9, #e5e5e5, #dcdcdc, #d3d3d3, #cbcbcb, #c2c2c2);
+
+$cbx-background-gradient: linear-gradient(to bottom, #3686c9, #3076b1, #2a679a, #245883, #1f496d);
+$cbx-card-shadow: #091e4240 0px 4px 8px -2px,
+#091e4214 0px 0px 0px 1px;
+
+$cbx-topbar-shadow: #00000030 0px 10px 20px,
+#0000003b 0px 6px 6px;
+
+$family-sans-serif: "Nunito",
+sans-serif;
+
+$color-dark-font: $cbx-color-1;
+$color-light-font: $cbx-color-3;
+$color-primary: $cbx-color-4;
+$color-secondary: $cbx-color-2;
+
+
+@mixin cbx-button {
+	padding: 5px;
+	font-size: 16px;
+	border-radius: 5px;
+	min-width: 60px;
+	text-align: center;
+	margin: 10px;
+}

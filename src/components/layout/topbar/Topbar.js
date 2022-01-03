@@ -1,5 +1,5 @@
 import React from 'react';
-import './Topbar.css';
+import './Topbar.scss';
 import Menu from '../menu/Menu';
 import OrderCart from '../../order/OrderCart';
 
@@ -10,7 +10,7 @@ import OrderCart from '../../order/OrderCart';
 const Topbar = () => {
 
   return (
-    <div className="topbar-container">
+    <div className=" has-text-light	 topbar-container">
       <Menu showMenu={false} toggleMenuHandler={() => {}} />
       <div className="header">
         <span>Punk Beer Bar</span>

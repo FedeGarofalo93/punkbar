@@ -1,0 +1,15 @@
+@import "../../../cbx.styles.scss";
+
+.topbar-container {
+	display: flex;
+	background-image: $cbx-background-gradient;
+	color: $color-light-font;
+	height: 50px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	text-align: center;
+	align-items: center;
+	justify-content: space-between;
+	box-shadow: $cbx-topbar-shadow;
+}
